@@ -46,14 +46,20 @@ public class Graph implements Serializable{
         hashNodes.put(name, nodeA);
     }
 
-    public void printDistances(Node nodeStart)
+    public String printDistances(Node nodeStart)
             throws IOException {
-        FileWriter fileWriter = new FileWriter("results");
-        PrintWriter printWriter = new PrintWriter(fileWriter);
+        String result = "";
         for (Node node : nodes) {
             String str = "From " + nodeStart.getName() + " to " + node.getName() + " is " + node.getDistance().toString() + "\n";
-            printWriter.print(str);
+            result = result + str;
         }
-        printWriter.close();
+        return result;
+//        FileWriter fileWriter = new FileWriter("results");
+//        PrintWriter printWriter = new PrintWriter(fileWriter);
+//        for (Node node : nodes) {
+//            String str = "From " + nodeStart.getName() + " to " + node.getName() + " is " + node.getDistance().toString() + "\n";
+//            printWriter.print(str);
+//        }
+//        printWriter.close();
     }
 }

@@ -13,7 +13,6 @@ public class Main{
         task curtask = new task();
         curtask.addJarFile("DijkstraParcs.jar");
         Graph graph = new Graph(curtask.findFile("input"));
-        byte[] data = SerializationUtils.serialize(graph);
         AMInfo info = new AMInfo(curtask, null);
 //        Graph graph = new Graph("graph");
         int len = graph.names.size();
@@ -27,13 +26,11 @@ public class Main{
             point p = info.createPoint();
             channel c = p.createChannel();
             p.execute("DijkstraParcs");
-            c.write(data);
+            c.write(graph);
             c.write(names);
             System.out.println("Waiting for result...");
-            System.out.println("Result: " + c.readObject());
+            System.out.println("Result: " + (String) c.readObject());
             curtask.end();
         }
-//        graph = Dijkstra.calculateShortestPathFromSource(graph, graph.hashNodes.get("A"));
-//        graph.printDistances(graph.hashNodes.get("A"));
     }
 }
