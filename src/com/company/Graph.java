@@ -6,7 +6,8 @@ import java.util.*;
 public class Graph {
 
     public HashMap<String, Node> hashNodes = new HashMap<>();
-    private Set<Node> nodes = new HashSet<>();
+    public Set<Node> nodes = new HashSet<>();
+    public List<String> names = new ArrayList<>();
 
     public Graph(String fileName)throws IOException{
         BufferedReader reader;
@@ -41,6 +42,7 @@ public class Graph {
 
     public void addNode(String name, Node nodeA) {
         nodes.add(nodeA);
+        names.add(name);
         hashNodes.put(name, nodeA);
     }
 
