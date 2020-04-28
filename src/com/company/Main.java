@@ -1,11 +1,9 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.List;
 
+import org.apache.commons.lang.SerializationUtils;
 import parcs.*;
 
 public class Main{
@@ -15,6 +13,7 @@ public class Main{
         task curtask = new task();
         curtask.addJarFile("DijkstraParcs.jar");
         Graph graph = new Graph(curtask.findFile("input"));
+        byte[] data = SerializationUtils.serialize(graph);
         AMInfo info = new AMInfo(curtask, null);
 //        Graph graph = new Graph("graph");
         int len = graph.names.size();
@@ -28,6 +27,7 @@ public class Main{
             point p = info.createPoint();
             channel c = p.createChannel();
             p.execute("DijkstraParcs");
+            c.write(data);
             c.write(names);
             System.out.println("Waiting for result...");
             System.out.println("Result: " + c.readObject());

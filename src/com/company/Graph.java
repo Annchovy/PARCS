@@ -3,7 +3,7 @@ package com.company;
 import java.io.*;
 import java.util.*;
 
-public class Graph {
+public class Graph implements Serializable{
 
     public HashMap<String, Node> hashNodes = new HashMap<>();
     public Set<Node> nodes = new HashSet<>();
